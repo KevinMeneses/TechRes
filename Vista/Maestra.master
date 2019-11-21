@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Maestra.master.cs" Inherits="TechRestaurant.Principales.Maestra" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <asp:ContentPlaceHolder ID="cabecera" runat="server">
+    
+    </asp:ContentPlaceHolder>    
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-light bg-info">
+            <asp:HyperLink ID="hlTechres" class="navbar-brand" style="color: white;" runat="server" NavigateUrl="~/Principales/GestionarRestaurante.aspx" Font-Bold="True">TECHRES</asp:HyperLink>
+            <asp:LinkButton ID="lbSalir" class="mr-sm-2" style="color: white;" OnClick="lbSalir_Click" runat="server">Salir</asp:LinkButton>
+        </nav>
+        <div class="row" style="margin-top:40px">
+
+            <asp:ContentPlaceHolder ID="contenido" runat="server">
+    
+            </asp:ContentPlaceHolder>            
+
+        </div>
+
+        <asp:ContentPlaceHolder ID="scripts" runat="server">
+    
+        </asp:ContentPlaceHolder>      
+        
+    </form>
+</body>
+</html>
