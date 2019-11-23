@@ -10,7 +10,8 @@ namespace TechRestaurant
 {
     public partial class ModificarPlato : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlPlato CP = new controlPlato();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,7 +29,7 @@ namespace TechRestaurant
             string descripcion = txDescripcion.Text;
             int precio = int.Parse(txPrecio.Text);
 
-            bool respuesta = CR.ModificarPlato(id_plato, nombre, descripcion, precio);
+            bool respuesta = CP.ModificarPlato(id_plato, nombre, descripcion, precio);
 
             if (respuesta)
             {

@@ -70,7 +70,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="controlEmpleado.cs" />
+    <Compile Include="controlFacturacion.cs" />
+    <Compile Include="controlMesas.cs" />
+    <Compile Include="controlPedido.cs" />
+    <Compile Include="controlPlato.cs" />
     <Compile Include="controlRes.cs" />
+    <Compile Include="controlStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

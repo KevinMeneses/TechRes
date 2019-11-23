@@ -10,7 +10,8 @@ namespace TechRestaurant
 {
     public partial class AgregarMesa : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlMesas CM = new controlMesas();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,7 +23,7 @@ namespace TechRestaurant
             int mesa = int.Parse(txNumero.Text);
             int sillas = int.Parse(txCantSillas.Text);
 
-            bool respuesta = CR.AgregarMesa(id_res, mesa, sillas);
+            bool respuesta = CM.AgregarMesa(id_res, mesa, sillas);
 
             if (respuesta)
             {

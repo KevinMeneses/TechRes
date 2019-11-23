@@ -11,7 +11,7 @@ namespace TechRestaurant
 {
     public partial class ConsultarStock : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlStock CS = new controlStock();
         int id_res = Restaurante.IdRestaurante;
         DataSet datos = new DataSet();
 
@@ -27,7 +27,7 @@ namespace TechRestaurant
 
         public void CargarStock()
         {
-            datos = CR.ConsultarStock(id_res);
+            datos = CS.ConsultarStock(id_res);
             gvStock.DataSource = datos;
             gvStock.DataBind();
         }
@@ -47,7 +47,7 @@ namespace TechRestaurant
             {
                 int id_ing = int.Parse(txBuscar.Text);
 
-                datos = CR.BuscarIngrediente(id_ing, id_res);
+                datos = CS.BuscarIngrediente(id_ing, id_res);
                 gvStock.DataSource = datos;
                 gvStock.DataBind();
 
@@ -65,7 +65,7 @@ namespace TechRestaurant
         protected void btConfirmar_Click(object sender, EventArgs e)
         {
             int id_ing = int.Parse(txBuscar.Text);
-            bool respuesta = CR.EliminarIngrediente(id_ing);
+            bool respuesta = CS.EliminarIngrediente(id_ing);
             if (respuesta)
             {
                 lbError.Text = "";

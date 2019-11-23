@@ -11,7 +11,9 @@ namespace TechRestaurant
 {
     public partial class ModificarPedido : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlPedido CP = new controlPedido();
+        controlPlato CPL = new controlPlato();
+        controlMesas CM = new controlMesas();
         DataSet datos = new DataSet();
         DataSet mesas = new DataSet();
         DataSet platos = new DataSet();
@@ -39,14 +41,14 @@ namespace TechRestaurant
         private void CargarDatos()
         {
             int id_pedido = int.Parse(Session["id_pedido"].ToString());
-            datos = CR.ConsultarPedidoMesa(id_pedido);
+            datos = CP.ConsultarPedidoMesa(id_pedido);
             gvPedido.DataSource = datos;
             gvPedido.DataBind();           
         }
 
         private void CargarPlatos()
         {
-            platos = CR.ConsultarPlatos(id_res);
+            platos = CPL.ConsultarPlatos(id_res);
             ddlPlatos.DataSource = platos;
             ddlPlatos.DataValueField = "id";
             ddlPlatos.DataTextField = "nombre";
@@ -57,7 +59,7 @@ namespace TechRestaurant
 
         private void CargarMesas()
         {
-            mesas = CR.ConsultarMesas(id_res);
+            mesas = CM.ConsultarMesas(id_res);
             ddlMesa.DataSource = mesas;
             ddlMesa.DataValueField = "id";
             ddlMesa.DataTextField = "numero_mesa";
@@ -67,7 +69,7 @@ namespace TechRestaurant
 
         protected void ddlPlatos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            platos = CR.ConsultarPlatos(id_res);
+            platos = CPL.ConsultarPlatos(id_res);
             int fila = ddlPlatos.SelectedIndex;
             decimal precio = platos.Tables[0].Rows[fila].Field<decimal>("precio");
             lbPrecio.Text = precio.ToString();
@@ -115,7 +117,7 @@ namespace TechRestaurant
             string descripcion = txDescripcion.Text;
             int id_pedido = int.Parse(Session["id_pedido"].ToString());
 
-            bool respuesta = CR.ModificarPedido(id_pedido, id_mesa, descripcion, total);
+            bool respuesta = CP.ModificarPedido(id_pedido, id_mesa, descripcion, total);
 
             if (respuesta)
             {
@@ -133,13 +135,13 @@ namespace TechRestaurant
             int id_pedido = int.Parse(Session["id_pedido"].ToString());
             int id_plato = 0;
 
-            bool respuesta2 = CR.EliminarPlatosdelPedido(id_pedido);
+            bool respuesta2 = CP.EliminarPlatosdelPedido(id_pedido);
             bool respuesta3 = true;
 
             for (int i = 0; i < gvPedido.Rows.Count; i++)
             {
                 id_plato = Convert.ToInt32(((DataSet)ViewState["DataSet"]).Tables[0].Rows[i].Field<decimal>("id"));
-                respuesta3 = CR.AgregarPlatoPedido(id_res, id_pedido, id_plato);
+                respuesta3 = CP.AgregarPlatoPedido(id_res, id_pedido, id_plato);
             }
 
             if (respuesta3)

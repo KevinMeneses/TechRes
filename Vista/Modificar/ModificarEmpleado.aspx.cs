@@ -11,7 +11,7 @@ namespace TechRestaurant
 {
     public partial class ModificarEmpleado : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlEmpleado CE = new controlEmpleado();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,7 +34,7 @@ namespace TechRestaurant
             string cargo = txCargo.Text;
             string contra = txContrasena.Text;
 
-            bool respuesta = CR.ModificarEmpleado(id_viejo, id_nuevo, nombre, apellido, correo, cargo, contra);
+            bool respuesta = CE.ModificarEmpleado(id_viejo, id_nuevo, nombre, apellido, correo, cargo, contra);
 
             if (respuesta)
             {

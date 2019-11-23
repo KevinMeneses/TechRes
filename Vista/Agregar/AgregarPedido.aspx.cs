@@ -11,7 +11,9 @@ namespace TechRestaurant
 {
     public partial class AgregarPedido : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlPedido CP = new controlPedido();
+        controlPlato CPL = new controlPlato();
+        controlMesas CM = new controlMesas();
         DataSet datos = new DataSet();
         DataSet mesas = new DataSet();
         DataSet platos = new DataSet();
@@ -36,14 +38,14 @@ namespace TechRestaurant
         private void CargarDatos()
         {
             int id_pedido = 0;
-            datos = CR.ConsultarPedidoMesa(id_pedido);
+            datos = CP.ConsultarPedidoMesa(id_pedido);
             gvPedido.DataSource = datos;
             gvPedido.DataBind();
         }
 
         private void CargarPlatos()
         {
-            platos = CR.ConsultarPlatos(id_res);
+            platos = CPL.ConsultarPlatos(id_res);
             ddlPlatos.DataSource = platos;
             ddlPlatos.DataValueField = "id";
             ddlPlatos.DataTextField = "nombre";
@@ -54,7 +56,7 @@ namespace TechRestaurant
 
         private void CargarMesas()
         {
-            mesas = CR.ConsultarMesas(id_res);
+            mesas = CM.ConsultarMesas(id_res);
             ddlMesa.DataSource = mesas;
             ddlMesa.DataValueField = "id";
             ddlMesa.DataTextField = "numero_mesa";
@@ -64,7 +66,7 @@ namespace TechRestaurant
 
         protected void ddlPlatos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            platos = CR.ConsultarPlatos(id_res);
+            platos = CPL.ConsultarPlatos(id_res);
             int fila = ddlPlatos.SelectedIndex;
             decimal precio = platos.Tables[0].Rows[fila].Field<decimal>("precio");
             lbPrecio.Text = precio.ToString();
@@ -111,7 +113,7 @@ namespace TechRestaurant
             int id_mesa = int.Parse(ddlMesa.SelectedValue.ToString());
             string descripcion = txDescripcion.Text;
 
-            int respuesta = CR.AgregarPedido(id_res, id_mesa, descripcion, total);
+            int respuesta = CP.AgregarPedido(id_res, id_mesa, descripcion, total);
 
             if (respuesta != 0)
             {
@@ -131,7 +133,7 @@ namespace TechRestaurant
             for (int i = 0; i < gvPedido.Rows.Count; i++)
             {
                 int id_plato = Convert.ToInt32(((DataSet)ViewState["DataSet"]).Tables[0].Rows[i].Field<decimal>("id"));
-                respuesta = CR.AgregarPlatoPedido(id_res, id_pedido, id_plato);
+                respuesta = CP.AgregarPlatoPedido(id_res, id_pedido, id_plato);
             }
 
             if (respuesta)

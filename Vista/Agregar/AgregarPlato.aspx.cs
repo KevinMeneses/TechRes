@@ -10,7 +10,8 @@ namespace TechRestaurant
 {
     public partial class AgregarPlato : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlPlato CP = new controlPlato();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +24,7 @@ namespace TechRestaurant
             string descripcion = txDescripcion.Text;
             int precio = int.Parse(txPrecio.Text);
 
-            bool respuesta = CR.AgregarPlato(id_res, nombre, descripcion, precio);
+            bool respuesta = CP.AgregarPlato(id_res, nombre, descripcion, precio);
 
             if (respuesta)
             {

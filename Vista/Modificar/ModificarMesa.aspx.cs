@@ -10,7 +10,8 @@ namespace TechRestaurant
 {
     public partial class ModificarMesa : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlMesas CM = new controlMesas();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,7 +27,7 @@ namespace TechRestaurant
             int mesa = int.Parse(txNumero.Text);
             int sillas = int.Parse(txCantSillas.Text);
 
-            bool respuesta = CR.ModificarMesa(id_mesa, mesa, sillas);
+            bool respuesta = CM.ModificarMesa(id_mesa, mesa, sillas);
 
             if (respuesta)
             {

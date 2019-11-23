@@ -11,7 +11,7 @@ namespace TechRestaurant
 {
     public partial class ConsultarPedido : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlPedido CP = new controlPedido();
         int id_res = Restaurante.IdRestaurante;
         DataSet datos = new DataSet();
 
@@ -27,7 +27,7 @@ namespace TechRestaurant
 
         private void CargarPedidos()
         {
-            datos = CR.ConsultarPedidos(id_res);
+            datos = CP.ConsultarPedidos(id_res);
             gvPedido.DataSource = datos;
             gvPedido.DataBind();
         }
@@ -46,7 +46,7 @@ namespace TechRestaurant
             {
                 int id_ped = int.Parse(txBuscar.Text);
 
-                datos = CR.BuscarPedido(id_ped, id_res);
+                datos = CP.BuscarPedido(id_ped, id_res);
                 gvPedido.DataSource = datos;
                 gvPedido.DataBind();
 
@@ -64,8 +64,8 @@ namespace TechRestaurant
         protected void btConfirmar_Click(object sender, EventArgs e)
         {
             int id_ped = int.Parse(txBuscar.Text);
-            CR.EliminarPlatosdelPedido(id_ped);
-            bool respuesta = CR.EliminarPedido(id_ped);
+            CP.EliminarPlatosdelPedido(id_ped);
+            bool respuesta = CP.EliminarPedido(id_ped);
             if (respuesta)
             {
                 lbError.Text = "";

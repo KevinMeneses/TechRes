@@ -11,7 +11,7 @@ namespace TechRestaurant
 {
     public partial class ConsultarMesa : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlMesas CM = new controlMesas();
         int id_res = Restaurante.IdRestaurante;
         DataSet datos = new DataSet();
 
@@ -27,7 +27,7 @@ namespace TechRestaurant
 
         public void CargarMesas()
         {
-            datos = CR.ConsultarMesas(id_res);
+            datos = CM.ConsultarMesas(id_res);
             gvMesa.DataSource = datos;
             gvMesa.DataBind();
         }
@@ -46,7 +46,7 @@ namespace TechRestaurant
             {
                 int id_mesa = int.Parse(txBuscar.Text);
 
-                datos = CR.BuscarMesa(id_mesa, id_res);
+                datos = CM.BuscarMesa(id_mesa, id_res);
                 gvMesa.DataSource = datos;
                 gvMesa.DataBind();
 
@@ -64,7 +64,7 @@ namespace TechRestaurant
         protected void btConfirmar_Click(object sender, EventArgs e)
         {
             int id_mesa = int.Parse(txBuscar.Text);
-            bool respuesta = CR.EliminarMesa(id_mesa);
+            bool respuesta = CM.EliminarMesa(id_mesa);
             if (respuesta)
             {
                 lbError.Text = "";

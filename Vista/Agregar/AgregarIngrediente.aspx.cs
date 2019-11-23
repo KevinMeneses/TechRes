@@ -10,7 +10,8 @@ namespace TechRestaurant
 {
     public partial class AgregarIngrediente : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();
+        controlStock CS = new controlStock();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +24,7 @@ namespace TechRestaurant
             int precio = int.Parse(txPrecio.Text);
             int cantidad = int.Parse(txCantidad.Text);
 
-            bool respuesta = CR.AgregarIngrediente(id_res, ingrediente, precio, cantidad);
+            bool respuesta = CS.AgregarIngrediente(id_res, ingrediente, precio, cantidad);
 
             if (respuesta)
             {

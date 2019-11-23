@@ -11,7 +11,7 @@ namespace TechRestaurant
 {
     public partial class ConsultarEmpleado : System.Web.UI.Page
     {
-        controlRes CR = new controlRes();        
+        controlEmpleado CE = new controlEmpleado();     
         int id_res = Restaurante.IdRestaurante;
         DataSet datos = new DataSet();
 
@@ -27,7 +27,7 @@ namespace TechRestaurant
 
         public void CargarEmpleados()
         {
-            datos = CR.ConsultarEmpleados(id_res);
+            datos = CE.ConsultarEmpleados(id_res);
             gvEmpleado.DataSource = datos;
             gvEmpleado.DataBind();            
         }
@@ -35,7 +35,7 @@ namespace TechRestaurant
         protected void btConfirmar_Click(object sender, EventArgs e)
         {
             string id_emp = txBuscar.Text;
-            bool respuesta = CR.EliminarEmpleado(id_emp);
+            bool respuesta = CE.EliminarEmpleado(id_emp);
             if(respuesta)
             {
                 lbError.Text = "";
@@ -68,7 +68,7 @@ namespace TechRestaurant
             {
                 string id_emp = txBuscar.Text;                               
 
-                datos = CR.BuscarEmpleado(id_emp, id_res);
+                datos = CE.BuscarEmpleado(id_emp, id_res);
                 gvEmpleado.DataSource = datos;
                 gvEmpleado.DataBind();                
 
